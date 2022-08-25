@@ -1,4 +1,4 @@
-import {epsilon, splitter, resulterrbound, estimate, vec, sum, sum_three, scale} from './util.js';
+const {epsilon, splitter, resulterrbound, estimate, vec, sum, sum_three, scale} = require('./util.js');
 
 const iccerrboundA = (10 + 96 * epsilon) * epsilon;
 const iccerrboundB = (4 + 48 * epsilon) * epsilon;
@@ -300,7 +300,7 @@ function incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent) {
     return fin[finlen - 1];
 }
 
-export function incircle(ax, ay, bx, by, cx, cy, dx, dy) {
+function incircle(ax, ay, bx, by, cx, cy, dx, dy) {
     const adx = ax - dx;
     const bdx = bx - dx;
     const cdx = cx - dx;
@@ -338,7 +338,7 @@ export function incircle(ax, ay, bx, by, cx, cy, dx, dy) {
     return incircleadapt(ax, ay, bx, by, cx, cy, dx, dy, permanent);
 }
 
-export function incirclefast(ax, ay, bx, by, cx, cy, dx, dy) {
+function incirclefast(ax, ay, bx, by, cx, cy, dx, dy) {
     const adx = ax - dx;
     const ady = ay - dy;
     const bdx = bx - dx;
@@ -355,3 +355,8 @@ export function incirclefast(ax, ay, bx, by, cx, cy, dx, dy) {
 
     return alift * bcdet + blift * cadet + clift * abdet;
 }
+
+module.exports = {
+    incircle,
+    incirclefast,
+};

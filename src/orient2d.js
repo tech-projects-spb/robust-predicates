@@ -1,4 +1,4 @@
-import {epsilon, splitter, resulterrbound, estimate, vec, sum} from './util.js';
+const {epsilon, splitter, resulterrbound, estimate, vec, sum} = require('./util.js');
 
 const ccwerrboundA = (3 + 16 * epsilon) * epsilon;
 const ccwerrboundB = (2 + 12 * epsilon) * epsilon;
@@ -52,7 +52,7 @@ function orient2dadapt(ax, ay, bx, by, cx, cy, detsum) {
     return D[Dlen - 1];
 }
 
-export function orient2d(ax, ay, bx, by, cx, cy) {
+function orient2d(ax, ay, bx, by, cx, cy) {
     const detleft = (ay - cy) * (bx - cx);
     const detright = (ax - cx) * (by - cy);
     const det = detleft - detright;
@@ -65,6 +65,11 @@ export function orient2d(ax, ay, bx, by, cx, cy) {
     return -orient2dadapt(ax, ay, bx, by, cx, cy, detsum);
 }
 
-export function orient2dfast(ax, ay, bx, by, cx, cy) {
+function orient2dfast(ax, ay, bx, by, cx, cy) {
     return (ay - cy) * (bx - cx) - (ax - cx) * (by - cy);
 }
+
+module.exports = {
+    orient2d,
+    orient2dfast,
+};

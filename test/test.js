@@ -1,15 +1,15 @@
 
-import fs from 'fs';
-import {test} from 'tape';
-import robustOrientation from 'robust-orientation';
-import nextafter from 'nextafter';
+const fs = require('fs');
+const {test} = require('tape');
+const robustOrientation = require('robust-orientation');
+const nextafter = require('nextafter');
 
-import {
+const {
     orient2d, orient2dfast,
     orient3d, orient3dfast,
     incircle, incirclefast,
     insphere, inspherefast
-} from '../index.js';
+} = require('../index.js');
 
 test('orient2d', (t) => {
     t.ok(orient2d(0, 0, 1, 1, 0, 1) < 0, 'clockwise');
@@ -36,7 +36,7 @@ test('orient2d', (t) => {
     }
     t.pass('512x512 near-collinear');
 
-    const lines = fs.readFileSync(new URL('./fixtures/orient2d.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/orient2d.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     for (const line of lines) {
         const [, ax, ay, bx, by, cx, cy, sign] = line.split(' ').map(Number);
         const result = orient2d(ax, ay, bx, by, cx, cy);
@@ -76,7 +76,7 @@ test('incircle', (t) => {
     }
     t.pass(`${128 * 3} incircle tests`);
 
-    const lines = fs.readFileSync(new URL('./fixtures/incircle.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/incircle.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     for (const line of lines) {
         const [, ax, ay, bx, by, cx, cy, dx, dy, sign] = line.split(' ').map(Number);
         const result = incircle(ax, ay, bx, by, cx, cy, dx, dy);
@@ -135,7 +135,7 @@ test('orient3d', (t) => {
         0, 0, b
     ) < 0, 'near below');
 
-    const lines = fs.readFileSync(new URL('./fixtures/orient3d.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/orient3d.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     for (const line of lines) {
         const [, ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, sign] = line.split(' ').map(Number);
         const result = orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz);
@@ -228,7 +228,7 @@ test('insphere', (t) => {
         0, 0, b
     ) > 0, 'near outside');
 
-    const lines = fs.readFileSync(new URL('./fixtures/insphere.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/insphere.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     for (const line of lines) {
         const [, ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, sign] = line.split(' ').map(Number);
         const result = insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez);

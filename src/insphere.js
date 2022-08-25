@@ -1,4 +1,4 @@
-import {epsilon, splitter, resulterrbound, estimate, vec, sum, sum_three, scale, negate} from './util.js';
+const {epsilon, splitter, resulterrbound, estimate, vec, sum, sum_three, scale, negate} = require('./util.js');
 
 const isperrboundA = (16 + 224 * epsilon) * epsilon;
 const isperrboundB = (5 + 72 * epsilon) * epsilon;
@@ -206,7 +206,7 @@ function insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, e
     return insphereexact(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez);
 }
 
-export function insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
+function insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez) {
     const aex = ax - ex;
     const bex = bx - ex;
     const cex = cx - ex;
@@ -271,7 +271,7 @@ export function insphere(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey,
     return -insphereadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, ex, ey, ez, permanent);
 }
 
-export function inspherefast(pax, pay, paz, pbx, pby, pbz, pcx, pcy, pcz, pdx, pdy, pdz, pex, pey, pez) {
+function inspherefast(pax, pay, paz, pbx, pby, pbz, pcx, pcy, pcz, pdx, pdy, pdz, pex, pey, pez) {
     const aex = pax - pex;
     const bex = pbx - pex;
     const cex = pcx - pex;
@@ -304,3 +304,8 @@ export function inspherefast(pax, pay, paz, pbx, pby, pbz, pcx, pcy, pcz, pdx, p
 
     return (clift * dab - dlift * abc) + (alift * bcd - blift * cda);
 }
+
+module.exports = {
+    insphere,
+    inspherefast,
+};

@@ -1,4 +1,4 @@
-import {epsilon, splitter, resulterrbound, estimate, vec, sum, scale} from './util.js';
+const {epsilon, splitter, resulterrbound, estimate, vec, sum, scale} = require('./util.js');
 
 const o3derrboundA = (7 + 56 * epsilon) * epsilon;
 const o3derrboundB = (3 + 28 * epsilon) * epsilon;
@@ -187,7 +187,7 @@ function orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent
     return fin[finlen - 1];
 }
 
-export function orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
+function orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
     const adx = ax - dx;
     const bdx = bx - dx;
     const cdx = cx - dx;
@@ -225,7 +225,7 @@ export function orient3d(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
     return orient3dadapt(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz, permanent);
 }
 
-export function orient3dfast(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
+function orient3dfast(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
     const adx = ax - dx;
     const bdx = bx - dx;
     const cdx = cx - dx;
@@ -240,3 +240,8 @@ export function orient3dfast(ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) {
         bdx * (cdy * adz - cdz * ady) +
         cdx * (ady * bdz - adz * bdy);
 }
+
+module.exports = {
+    orient3d,
+    orient3dfast,
+};

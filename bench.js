@@ -1,9 +1,9 @@
 
-import fs from 'fs';
-import robustOrientation from 'robust-orientation';
-import robustInSphere from 'robust-in-sphere';
+const fs = require('fs');
+const robustOrientation = require('robust-orientation');
+const robustInSphere = require('robust-in-sphere');
 
-import {orient2d, orient3d, incircle, insphere} from './index.js';
+const {orient2d, orient3d, incircle, insphere} = require('./index.js');
 
 {
     const r = 0.95;
@@ -39,7 +39,7 @@ import {orient2d, orient3d, incircle, insphere} from './index.js';
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/orient3d.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync(new URL('./test/fixtures/orient3d.txt'), 'utf8').trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 12);
     const points = [];
     let i = 0;
@@ -86,7 +86,7 @@ import {orient2d, orient3d, incircle, insphere} from './index.js';
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/incircle.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync(new URL('./test/fixtures/incircle.txt'), 'utf8').trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 8);
     const points = [];
     let i = 0;
@@ -129,7 +129,7 @@ import {orient2d, orient3d, incircle, insphere} from './index.js';
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/insphere.txt', import.meta.url), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync(new URL('./test/fixtures/insphere.txt'), 'utf8').trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 15);
     const points = [];
     let i = 0;
