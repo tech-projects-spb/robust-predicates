@@ -39,7 +39,7 @@ const {orient2d, orient3d, incircle, insphere} = require('./index.js');
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/orient3d.txt'), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/orient3d.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 12);
     const points = [];
     let i = 0;
@@ -86,7 +86,7 @@ const {orient2d, orient3d, incircle, insphere} = require('./index.js');
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/incircle.txt'), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/incircle.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 8);
     const points = [];
     let i = 0;
@@ -129,7 +129,7 @@ const {orient2d, orient3d, incircle, insphere} = require('./index.js');
 }
 
 {
-    const lines = fs.readFileSync(new URL('./test/fixtures/insphere.txt'), 'utf8').trim().split(/\r?\n/);
+    const lines = fs.readFileSync('test/fixtures/insphere.txt', {encoding: 'utf8', flag: 'r'}).trim().split(/\r?\n/);
     const coords = new Float64Array(lines.length * 15);
     const points = [];
     let i = 0;
